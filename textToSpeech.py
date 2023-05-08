@@ -4,7 +4,9 @@ from PyPDF2 import PdfReader
 
 def speak_init(rate):
     """
-    Initializes a text-to-speech engine and sets the speaking rate to 205.
+    Initializes a text-to-speech engine and sets the speaking rate to variable named rate.
+    Args:
+        rate (int): The rate of the reading th document.
     Returns:
         pyttsx3.engine.Engine: The text-to-speech engine object.
     """
@@ -53,7 +55,11 @@ def speak(text, rate):
     engine.runAndWait()
 
 
-reader = read_pdf("ONeill_WeaponsMathDestruct_30pages.pdf")
-text = text_of_page(reader=reader, page_no=4)
-print(text)
-speak(text=text, rate=205)
+reader = read_pdf(
+    "ONeill_WeaponsMathDestruct_30pages.pdf"
+)  # Location of the PDF desired to read
+text = text_of_page(
+    reader=reader, page_no=18
+)  # Converts the pdf to text as per the page number
+print(text)  # Prints the reading text to the terminal
+speak(text=text, rate=180)  # Speaks the text given at the rate mentioned.
