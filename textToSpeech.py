@@ -2,7 +2,7 @@ import pyttsx3
 from PyPDF2 import PdfReader
 
 
-def speak_init():
+def speak_init(rate):
     """
     Initializes a text-to-speech engine and sets the speaking rate to 205.
     Returns:
@@ -10,8 +10,7 @@ def speak_init():
     """
     engine = pyttsx3.init()
     rate = engine.getProperty("rate")  # getting details of current speaking rate
-    print(rate)  # printing current voice rate
-    engine.setProperty("rate", 205)  # setting up new voice rate
+    engine.setProperty("rate", rate)  # setting up new voice rate
     return engine
 
 
@@ -41,7 +40,7 @@ def text_of_page(reader, page_no):
     return text
 
 
-def speak(text):
+def speak(text, rate):
     """
     Speaks out the given text using a text-to-speech engine.
     Args:
@@ -49,7 +48,7 @@ def speak(text):
     Returns:
         None
     """
-    engine = speak_init()
+    engine = speak_init(rate=rate)
     engine.say(text)
     engine.runAndWait()
 
@@ -57,4 +56,4 @@ def speak(text):
 reader = read_pdf("ONeill_WeaponsMathDestruct_30pages.pdf")
 text = text_of_page(reader=reader, page_no=4)
 print(text)
-speak(text=text)
+speak(text=text, rate=205)
